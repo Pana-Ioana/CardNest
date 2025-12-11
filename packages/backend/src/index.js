@@ -1,6 +1,7 @@
 import express, {json} from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import healthRouter from './routes/healthRouter.js';
 
 const app = express();
 
@@ -16,6 +17,8 @@ app.get('/ping', (req, res) => {
 
     console.log('Ping request received at', new Date().toISOString());
 });
+
+app.use(healthRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
